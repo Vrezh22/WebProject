@@ -1,10 +1,18 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 //images
-import logo from '../../images/logo.png'
+import logo from '../../images/logo.png';
 
 
-const Navbar = ({ navbarIntems,toggleOpenAside}) => {
-    const { home, about, contactUs, login, registration } = navbarIntems;
+const Navbar = ({ navbarItems, toggleOpenAside }) => {
+    
+    const showNavbarItems = navbarItems.map(item => {
+        return (
+            <li className="nav_item" key={item.id}>
+                <NavLink to={item.link} exact activeClassName="navActiveItem"> {item.name} </NavLink>
+            </li>
+        )
+    })
 
     return (
         <nav className="navbar">
@@ -12,14 +20,12 @@ const Navbar = ({ navbarIntems,toggleOpenAside}) => {
                 <img src={logo} alt="logo" />
             </div>
             <ul className="nav_list">
-                <li className="nav_item">{home.name}</li>
-                <li className="nav_item">{about.name}</li>
-                <li className="nav_item">{contactUs.name}</li>
-                <li className="nav_item">{login.name}</li>
-                <li className="nav_item">{registration.name}</li>
+                {showNavbarItems}
             </ul>
         </nav>
     )
 }
+
+
 
 export default Navbar;
