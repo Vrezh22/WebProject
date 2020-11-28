@@ -10,6 +10,14 @@ a{
 }
 .app_content {
   margin-top: 63px;
+  margin-left: 20px;
+  position: relative;
+  width:100%;
+
+}
+.app_content>div{
+  position: absolute;
+  width:98%;
 }
 img {
   width: 100%;

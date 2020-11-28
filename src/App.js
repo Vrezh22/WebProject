@@ -1,14 +1,14 @@
 import React from 'react'
 import Navbar from './components/navbar'
 import Aside from './components/aside'
-import { Route, Switch, Redirect } from 'react-router-dom';
-
+import { Route, Redirect } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
 //pages
 import About from './pages/about';
 import ContactUs from './pages/contactUs';
 import Login from './pages/login';
 import Registration from './pages/registration';
-import Posts from './pages/posts'
+import Posts from './pages/posts';
 
 const data = {
   navbarItems: [{
@@ -78,13 +78,16 @@ const data = {
 
 class App extends React.Component {
   constructor(props) {
+    console.log('Constructor');
     super(props);
     this.toggleOpenAside = this.toggleOpenAside.bind(this);
   }
   state = {
     isOpen: false,
-
+    isOpenAboutImg: false
   }
+
+
 
   render() {
 
@@ -93,14 +96,19 @@ class App extends React.Component {
         <Navbar navbarItems={data.navbarItems} toggleOpenAside={this.toggleOpenAside} />
         <Aside isOpen={this.state.isOpen} />
         <div className="app_content">
-          <Switch>
-            <Route path="/about" component={About} />
+          <AnimatedSwitch
+            atEnter={{ opacity: 0 }}
+            atLeave={{ opacity: 0 }}
+            atActive={{ opacity: 1 }}
+            className="app_content"
+          >
+            <Route path="/about" exact render={() => < About isOpenAboutImg={this.state.isOpenAboutImg} toogleOpenAboutPageImg={this.toogleOpenAboutPageImg} />} />
             <Route path="/contactus" component={ContactUs} />
             <Route path="/login" component={Login} />
             <Route path="/registration" component={Registration} />
-            <Route path="/posts" render={(props) => <Posts {...props} posts={data.posts}/>} />
+            <Route path="/posts" render={(props) => <Posts {...props} posts={data.posts} />} />
             <Redirect from="*" to="/" />
-          </Switch>
+          </AnimatedSwitch>
         </div>
 
 
@@ -108,8 +116,45 @@ class App extends React.Component {
     )
   }
 
+  //lifecycles
+  componentDidMount() {
+    console.log('Did MOunt');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('should component update');
+    // console.log('Previous state = '+ this.state.isOpenAboutImg );
+    // console.log('Next State = ' + nextState.isOpenAboutImg);
+    return true;
+  }
+
+
+  static getDerivedStateFromProps(prevProps,prevState) {
+    console.log('getDerivedStateFromProps');
+    console.log('Previous Props = '+ prevProps );
+    console.log('previous State = ' + prevState);
+    return null;
+  }
+
+  getSnapshotBeforeUpdate(prevProps,prevState) {
+    return 'getSnapshotBeforeUpdate';
+  }
+
+  componentDidUpdate(prevProps , prevState ,snapshot) {
+    console.log('Component Did Update');
+    console.log('snapshot = '  + snapshot);
+  }
+
+
+  //costum methods
   toggleOpenAside() {
     this.setState({ isOpen: !this.state.isOpen })
+  }
+  toogleOpenAboutPageImg = () => {
+    this.setState((state) => ({
+      ...state,
+      isOpenAboutImg: !state.isOpenAboutImg
+    }))
   }
 
 }
