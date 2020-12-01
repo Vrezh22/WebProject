@@ -3,10 +3,7 @@ import style from './about.module.css';
 class About extends React.Component {
     //toogleOpenAboutPageImg  isOpenAboutImg
     state = {}
-    constructor(props) {
-        super(props);
 
-    }
 
     // componentWillMount
     render() {

@@ -78,7 +78,6 @@ const data = {
 
 class App extends React.Component {
   constructor(props) {
-    console.log('Constructor');
     super(props);
     this.toggleOpenAside = this.toggleOpenAside.bind(this);
   }
@@ -118,11 +117,11 @@ class App extends React.Component {
 
   //lifecycles
   componentDidMount() {
-    console.log('Did MOunt');
+    
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('should component update');
+
     // console.log('Previous state = '+ this.state.isOpenAboutImg );
     // console.log('Next State = ' + nextState.isOpenAboutImg);
     return true;
@@ -130,9 +129,7 @@ class App extends React.Component {
 
 
   static getDerivedStateFromProps(prevProps,prevState) {
-    console.log('getDerivedStateFromProps');
-    console.log('Previous Props = '+ prevProps );
-    console.log('previous State = ' + prevState);
+  
     return null;
   }
 
@@ -141,8 +138,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps , prevState ,snapshot) {
-    console.log('Component Did Update');
-    console.log('snapshot = '  + snapshot);
+    
   }
 
 

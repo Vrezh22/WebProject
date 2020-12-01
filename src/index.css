@@ -71,7 +71,6 @@ img {
 }
 
 .btn {
-  padding: 11px 15px;
   background-color: transparent;
   border: 1px solid #14b7ac;
   color: #14b7ac;
@@ -126,4 +125,9 @@ img {
 
 .aside.hidden {
   transform: translate(-100%);
+}
+
+/* components */
+.formInput {
+
 }
