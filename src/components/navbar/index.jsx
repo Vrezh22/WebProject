@@ -4,16 +4,29 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../images/logo.png';
 
 
-const Navbar = ({ navbarItems, toggleOpenAside }) => {
-    
+import { withRouter } from 'react-router-dom';
+
+
+const Navbar = ({ navbarItems, toggleOpenAside, history }) => {
+    const isAuth = JSON.parse(localStorage.getItem('isAuth'));
     const showNavbarItems = navbarItems.map(item => {
-        return (
-            <li className="nav_item" key={item.id}>
-                <NavLink to={item.link} exact activeClassName="navActiveItem"> {item.name} </NavLink>
-            </li>
-        )
+        
+        if (!isAuth && item.name === 'Posts') {
+            return null;
+        } else {
+            return (
+                <li className="nav_item" key={item.id}>
+                    <NavLink to={item.link} exact activeClassName="navActiveItem"> {item.name} </NavLink>
+                </li>
+            )
+        }
     })
 
+    const logout = () => {
+        localStorage.setItem('isAuth', JSON.stringify(false));
+        history.push('/login');
+
+    }
     return (
         <nav className="navbar">
             <div className="logo" onClick={toggleOpenAside}>
@@ -21,6 +34,9 @@ const Navbar = ({ navbarItems, toggleOpenAside }) => {
             </div>
             <ul className="nav_list">
                 {showNavbarItems}
+                <li>
+                    <button className={isAuth?'btn logout':"btn hidden"} onClick={logout}>Logout</button>
+                </li>
             </ul>
         </nav>
     )
@@ -28,4 +44,4 @@ const Navbar = ({ navbarItems, toggleOpenAside }) => {
 
 
 
-export default Navbar;
+export default withRouter(Navbar);

@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import style from './registr.module.css';
 //validators 
-import { maxLength, minLength, validateEmail } from '../../helpers/validators';
+import { maxLength, minLength, validateEmail, isAllValid, isSuchUserWithEmail } from '../../helpers/validators';
 
 class Registration extends React.Component {
     state = {
@@ -38,26 +38,26 @@ class Registration extends React.Component {
                 <h1>Registration Page</h1>
                 <Form>
                     <FormGroup>
-                        <span className={style.errorText}>{name.error?name.error:null }</span>
+                        <span className={name.error ? `${style.validInput} ${style.errorText}` : style.validInput}>{name.error ? name.error : null}</span>
                         <Label for="name1">Name</Label>
                         <Input type="text" name="name" id="name1" placeholder="Name" onChange={this.handleOnChange} />
                     </FormGroup>
                     <FormGroup>
-                    <span className={style.errorText}>{email.error?email.error:null }</span>
+                        <span className={email.error ? `${style.validInput} ${style.errorText}` : style.validInput}>{email.error ? email.error : null}</span>
                         <Label for="email1">Email</Label>
                         <Input type="email" name="email" id="email1" placeholder="Email" onChange={this.handleOnChange} />
                     </FormGroup>
                     <FormGroup>
-                    <span className={style.errorText}>{password.error?password.error:null }</span>
+                        <span className={password.error ? `${style.validInput} ${style.errorText}` : style.validInput}>{password.error ? password.error : null}</span>
                         <Label for="pass">Password</Label>
                         <Input type="password" name="password" id="pass" placeholder="Password" onChange={this.handleOnChange} />
                     </FormGroup>
                     <FormGroup>
-                    <span className={style.errorText}>{confirm.error?confirm.error:null }</span>
+                        <span className={confirm.error ? `${style.validInput} ${style.errorText}` : style.validInput}>{confirm.error ? confirm.error : null}</span>
                         <Label for="conf">Confirm Password</Label>
                         <Input type="password" name="confirm" id="conf" placeholder="Confirm Password" onChange={this.handleOnChange} />
                     </FormGroup>
-                    <Button>Registration</Button>
+                    <Button onClick={this.handleOnSubmit} >Registration</Button>
                 </Form>
             </div >
         )
@@ -70,7 +70,8 @@ class Registration extends React.Component {
         switch (name) {
             case "email": {
                 isValid = validateEmail(value);
-                error = isValid ? null : 'Սխալ Էլ-Հասցե';
+                isValid = !isSuchUserWithEmail(value);
+                error = isValid ? null : 'Սխալ Էլ-Հասցե կամ արդեն այն կա';
                 break;
             }
             case "confirm": {
@@ -80,7 +81,7 @@ class Registration extends React.Component {
             }
             case 'password':
             case 'name': {
-                
+
                 isValid = maxLength(20)(value) && minLength(3)(value);
                 error = isValid ? null : 'Գրեք 3 - ից երկար և 20 - ից կարճ բառ';
                 break;
@@ -97,6 +98,23 @@ class Registration extends React.Component {
                 error
             }
         }))
+    }
+    handleOnSubmit = (e) => {
+        if (isAllValid(this.state)) {
+            let users = localStorage.getItem('users');
+            users = users ? JSON.parse(users) : [];
+            users.push({
+                id: Date.now() + this.state.name.value,
+                name: this.state.name.value,
+                email: this.state.email.value,
+                password: this.state.password.value
+            })
+            localStorage.setItem('users', JSON.stringify(users));
+            this.props.history.push('/login');
+        } else {
+            console.log('No');
+        }
+
     }
 }
 

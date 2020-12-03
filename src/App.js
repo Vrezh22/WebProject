@@ -152,6 +152,7 @@ class App extends React.Component {
       isOpenAboutImg: !state.isOpenAboutImg
     }))
   }
+  
 
 }
 

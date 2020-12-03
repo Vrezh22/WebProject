@@ -108,6 +108,12 @@ img {
 .navActiveItem {
   color:blue;
 }
+.btn.logout {
+  margin-top: 7px;
+}
+.btn.hidden {
+  visibility: hidden;
+}
 
 /* aside */
 
@@ -128,6 +134,7 @@ img {
 }
 
 /* components */
-.formInput {
-
+.form-group {
+  display: flex;
+  flex-direction: column;
 }
