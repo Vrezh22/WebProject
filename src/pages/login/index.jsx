@@ -1,8 +1,7 @@
 import React from 'react';
-import style from '../registration/registr.module.css';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { isSuchUserWithEmail } from '../../helpers/validators';
-
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import style from '../registration/register.module.css';
+import { isSuchUserWithEmail } from '../../helpers/validator';
 
 class Login extends React.Component {
     state = {
@@ -15,18 +14,18 @@ class Login extends React.Component {
             <div className={style.registerForm}>
                 <h1>Login Page</h1>
                 <span className={this.state.error ? `${style.validInput} ${style.errorText}` : style.validInput}>{this.state.error ? this.state.error : null}</span>
-                <Form>
+                <Form className={style.formline}>
                     <FormGroup>
-                        <Label for="email1">Email</Label>
-                        <Input type="email" name="email" id="email1" placeholder="Email" onChange={this.handleOnChange} />
+                        <Label for="exampleEmail">Email</Label>
+                        <Input type="email" name="email" id="exampleEmail" placeholder="Email" onChange={this.handleOnChange} />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="pass">Password</Label>
-                        <Input type="password" name="password" id="pass" placeholder="Password" onChange={this.handleOnChange} />
+                        <Label for="pass1">Password</Label>
+                        <Input type="password" name="password" id="pass1" placeholder="Password" onChange={this.handleOnChange} />
                     </FormGroup>
-                    <Button onClick={this.handleOnSubmit} >Registration</Button>
+                    <Button className={style.regBtn} onClick={this.handleOnSubmit}>Submit</Button>
                 </Form>
-            </div >
+            </div>
         )
     }
     handleOnChange = (event) => {
@@ -43,11 +42,13 @@ class Login extends React.Component {
         if (candidate) {
             if (password === candidate.password) {
                 localStorage.setItem('isAuth', JSON.stringify(true));
-                this.props.history.push('/');
-            } else {
+                localStorage.setItem('activeUser' ,JSON.stringify(candidate))
+                this.props.history.push('/')
+            }
+            else {
                 this.setState((prevState) => ({
                     ...prevState,
-                    error: 'Ներմուծվել է սխալ գաղտնաբառ'
+                    error: 'Սխալ գաղտնաբառ'
                 }))
                 localStorage.setItem('isAuth', JSON.stringify(false))
             }
@@ -55,12 +56,10 @@ class Login extends React.Component {
         else {
             this.setState((prevState) => ({
                 ...prevState,
-                error: 'Սխալ էլ հասցե'
+                error: 'Սխալ Էլ-հասցե'
             }))
             localStorage.setItem('isAuth', JSON.stringify(false))
         }
     }
 }
-
-
 export default Login;

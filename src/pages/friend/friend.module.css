@@ -1,0 +1,32 @@
+.friend {
+    max-width:1444px;
+    margin:0 auto;
+    padding:50px;
+    border:1px solid #994f52 ;
+    border-radius: 5px;
+    background-color: #994f52 ;
+    display: flex;
+}
+.friendAvatar {
+    width:300px;
+}
+.friendAvatar>img {
+    width:100%;
+}
+.friendInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 50px;
+}
+.friendInfo>p {
+    font-size: 17px;
+    color:black;
+    line-height: 1.14;
+    letter-spacing: 1px;
+}
+.friendInfo>p::first-letter {
+        color:#4f8899;
+        font-size:40px;
+        font-weight:800;
+}

@@ -1,140 +1,85 @@
-a{
-  text-decoration: none;
-  color:black;
+img{
+    width: 100%;
+    height: 100%;
 }
-.App {
-  display: flex;
-  justify-content: space-between;
-  height: 100%;
-  width: 100%;
+.logo{
+    width: 70px;
+    height: auto;
+    margin-right:5px;
+    margin-left: 50px;
+    cursor: pointer;
 }
-.app_content {
-  margin-top: 63px;
-  margin-left: 20px;
-  position: relative;
-  width:100%;
-
+.navbar{
+    display: flex;
 }
-.app_content>div{
-  position: absolute;
-  width:98%;
+.nav_item{
+    color: yellow;
+    font-size: 20px;
+    margin-left: 20px;
+    cursor: pointer;
 }
-img {
-  width: 100%;
-  height: 100%;
+.aside{
+    position: fixed;
+    left: 0;
+    height: 100vh;
+    width: 120px;
+    background-color:#ee6e73;
+    transition: 1s;
 }
-
-.section1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 667px;
-  width: 100%;
-  margin-top: 30px;
-}
-
-.section1head {
-  display: flex;
-  height: 50px;
-}
-.navbar {
-  position: fixed;
-}
-.navbar_nav {
-  display: flex;
-}
-
-.nav_item {
-  list-style: none;
-  margin-left: 30px;
-}
-
-.nav_link {
-  text-decoration: none;
-  color: white;
-  text-transform: uppercase;
-}
-
-.txt1 {
-  margin-left: 20px;
-  color: #14b7ac;
-}
-
-.section1text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 775px;
-  padding-top: 143px;
-  color: white;
-  text-align: center;
-}
-
-.btn {
-  background-color: transparent;
-  border: 1px solid #14b7ac;
-  color: #14b7ac;
-  margin-top: 20px;
+.aside.hidden{
+    transform: translate(-100%);
 }
 
 /* navbar */
-
-.navbar {
-  background-color: #58FAF4;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  z-index: 2;
+.navactiveItem{
+    color: blue;
 }
-
-.nav_list {
-  list-style: none;
-  display: flex;
+/* celebs */
+.celeb_contenet{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-
-.nav_item {
-  margin-left: 15px;
-  cursor: pointer;
-  padding: 5px;
-  font-size: 17px;
+.nkari_chxol{
+    width: 300px;
+    height: auto;
 }
-
-.logo {
-  width: 50px;
-  height: auto;
-  margin: 0px 10px;
-  cursor: pointer;
+.celeb_par{
+    font-size: 35px;
 }
-.navActiveItem {
-  color:blue;
+.celebrity_line{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:#994f52 ;
 }
-.btn.logout {
-  margin-top: 7px;
+.hop{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:#994f52 ;
 }
-.btn.hidden {
-  visibility: hidden;
+.full{
+    width: 350px;
+    height: auto;
 }
-
-/* aside */
-
-.aside {
-  position: fixed;
-  left: 8px;
-  top: 70px;
-  height: 100vh;
-  width: 200px;
-  background-color: #69A1FB;
-  transition: 1s;
-  transform: translate(0);
-  z-index: 1;
+/* about */
+.aboutUs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('https://thumbs.gfycat.com/NastyWickedBluebottle-size_restricted.gif');
 }
-
-.aside.hidden {
-  transform: translate(-100%);
-}
-
-/* components */
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
+.preloader {
+    position: fixed;
+    top:20%;
+    left:44%;
+    width:200px;
+  }

@@ -1,65 +1,74 @@
 import React from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import style from './registr.module.css';
-//validators 
-import { maxLength, minLength, validateEmail, isAllValid, isSuchUserWithEmail } from '../../helpers/validators';
-
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import style from './register.module.css'
+import { minLength, maxLength, validEmail , isAllValid, isSuchUserWithEmail , isUrlValid} from '../../helpers/validator';
 class Registration extends React.Component {
     state = {
         name: {
             isTouched: false,
             isValid: false,
             value: '',
-            error: null
+            error: null,
+        },
+       avatar: {
+            isTouched: false,
+            isValid: false,
+            value: '',
+            error: null,
         },
         email: {
             isTouched: false,
             isValid: false,
             value: '',
-            error: null
+            error: null,
         },
         password: {
             isTouched: false,
             isValid: false,
             value: '',
-            error: null
+            error: null,
         },
-        confirm: {
+        repassword: {
             isTouched: false,
             isValid: false,
             value: '',
-            error: null
-        }
+            error: null,
+        },
     }
     render() {
-        const { name, email, password, confirm } = this.state;
+        const { name, email, password, repassword , avatar } = this.state;
         return (
             <div className={style.registerForm}>
                 <h1>Registration Page</h1>
-                <Form>
+                <Form className={style.formline}>
                     <FormGroup>
                         <span className={name.error ? `${style.validInput} ${style.errorText}` : style.validInput}>{name.error ? name.error : null}</span>
-                        <Label for="name1">Name</Label>
-                        <Input type="text" name="name" id="name1" placeholder="Name" onChange={this.handleOnChange} />
+                        <Label for="fullname">Full Name</Label>
+                        <Input type="text" name="name" id="fullname" placeholder="Full Name" onChange={this.handleOnChange} />
+                    </FormGroup>
+                    <FormGroup>
+                        <span className={avatar.error ? `${style.validInput} ${style.errorText}` : style.validInput}>{avatar.error ? avatar.error : null}</span>
+                        <Label for="avatar1">Avatar</Label>
+                        <Input type="text" name="avatar" id="avatar1" placeholder="Url address" onChange={this.handleOnChange} />
                     </FormGroup>
                     <FormGroup>
                         <span className={email.error ? `${style.validInput} ${style.errorText}` : style.validInput}>{email.error ? email.error : null}</span>
-                        <Label for="email1">Email</Label>
-                        <Input type="email" name="email" id="email1" placeholder="Email" onChange={this.handleOnChange} />
+                        <Label for="exampleEmail">Email</Label>
+                        <Input type="email" name="email" id="exampleEmail" placeholder="Email" onChange={this.handleOnChange} />
                     </FormGroup>
                     <FormGroup>
                         <span className={password.error ? `${style.validInput} ${style.errorText}` : style.validInput}>{password.error ? password.error : null}</span>
-                        <Label for="pass">Password</Label>
-                        <Input type="password" name="password" id="pass" placeholder="Password" onChange={this.handleOnChange} />
+                        <Label for="pass1">Password</Label>
+                        <Input type="password" name="password" id="pass1" placeholder="Password" onChange={this.handleOnChange} />
                     </FormGroup>
                     <FormGroup>
-                        <span className={confirm.error ? `${style.validInput} ${style.errorText}` : style.validInput}>{confirm.error ? confirm.error : null}</span>
-                        <Label for="conf">Confirm Password</Label>
-                        <Input type="password" name="confirm" id="conf" placeholder="Confirm Password" onChange={this.handleOnChange} />
+                        <span className={repassword.error ? `${style.validInput} ${style.errorText}` : style.validInput}>{repassword.error ? repassword.error : null}</span>
+                        <Label for="repass">Repassword</Label>
+                        <Input type="password" name="repassword" id="repass" placeholder="Repassword" onChange={this.handleOnChange} />
                     </FormGroup>
-                    <Button onClick={this.handleOnSubmit} >Registration</Button>
+                    <Button className={style.regBtn} onClick={this.handleOnSubmit}>Registration</Button>
                 </Form>
-            </div >
+            </div>
         )
     }
     handleOnChange = (event) => {
@@ -68,22 +77,27 @@ class Registration extends React.Component {
         let isValid = false;
         let error = null;
         switch (name) {
-            case "email": {
-                isValid = validateEmail(value);
+            case 'email': {
+                isValid = validEmail(value);
                 isValid = !isSuchUserWithEmail(value);
-                error = isValid ? null : 'Սխալ Էլ-Հասցե կամ արդեն այն կա';
+                error = isValid ? null : 'Wrong Email';
                 break;
             }
-            case "confirm": {
+            case 'repassword': {
                 isValid = this.state.password.value === value;
-                error = isValid ? null : 'Սխալ Գաղտնաբառի կրկնություն';
+                console.log(this.state.password);
+                error = isValid ? null : 'Wrong Password Repeated';
                 break;
             }
             case 'password':
             case 'name': {
-
-                isValid = maxLength(20)(value) && minLength(3)(value);
-                error = isValid ? null : 'Գրեք 3 - ից երկար և 20 - ից կարճ բառ';
+                isValid = minLength(3)(value) && maxLength(20)(value);
+                error = isValid ? null : 'It needs to be between 3 and 20';
+                break;
+            }
+            case 'avatar': {
+                isValid = isUrlValid(value);
+                error = isValid? null: 'URL հասցեն սխալ է';
                 break;
             }
             default:
@@ -100,22 +114,22 @@ class Registration extends React.Component {
         }))
     }
     handleOnSubmit = (e) => {
-        if (isAllValid(this.state)) {
-            let users = localStorage.getItem('users');
-            users = users ? JSON.parse(users) : [];
-            users.push({
-                id: Date.now() + this.state.name.value,
-                name: this.state.name.value,
-                email: this.state.email.value,
-                password: this.state.password.value
-            })
-            localStorage.setItem('users', JSON.stringify(users));
-            this.props.history.push('/login');
-        } else {
-            console.log('No');
-        }
-
+      if(isAllValid(this.state)){
+          let users= localStorage.getItem('users');
+          users= users? JSON.parse('users'):[];
+          users.push({
+              id:Date.now()+this.state.name.value,
+              avatar:this.state.avatar.value,
+              name: this.state.name.value,
+              email: this.state.email.value,
+              password: this.state.password.value,
+          })
+          localStorage.setItem('users' , JSON.stringify(users));
+          this.props.history.push('/login')
+      }
+      else{
+          console.log('NO');
+      }
     }
 }
-
 export default Registration;

@@ -1,29 +1,31 @@
 import React from 'react';
 
-const Posts = (props) => {
-    const posts = props.posts;
-    const mapPosts = posts.map(post => {
-        return (
-            <div className="row" key={post.id}>
-                <div className="col s12 m6">
-                    <div className="card blue-grey darken-1">
-                        <div className="card-content white-text">
-                            <span className="card-title" style={{ color: 'red' }}>id:{post.id}   /{post.title}</span>
-                            <p>{post.body}</p>
-                        </div>
-                    </div>
+const Posts = ({posts})=>{
+    const mapPosts= posts.map(post=>{
+        return(
+         <div className="full" key={post.id}>
+
+            <div className="col s12 m4">
+              <div className="card">
+                <div className="card-image">
+                  <img src={post.img} alt= "pic" />
+                  <span className="card-title">{post.title}</span>
+                  </div>
+
+                <div className="card-content">
+                  <p>{post.body}</p>
                 </div>
+              </div>
             </div>
+          </div>
+                 
         )
     })
-    return (
-        <div>
-            <h1>Posts Page</h1>
+    return(
+        <div className="hop">
+            <h1>Քաղքի անցուդարցը</h1>
             {mapPosts}
-
-
         </div>
     )
 }
-
 export default Posts;

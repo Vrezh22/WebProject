@@ -1,11 +1,11 @@
-.aboutImg {
-    width: 200px;
+.aboutImg{
+    width: 400px;
     height: auto;
 }
-.aboutImg >img {
-    width:100%;
-    height:100%;
+.aboutImg>img{
+    width: 100%;
+    height: 100%;
 }
-.aboutImg.hidden {
-    display: none;
+.hidden{
+   display: none;
 }

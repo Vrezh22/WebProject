@@ -1,0 +1,23 @@
+.profile {
+    display: flex;
+    align-items: center;
+    border:1px solid black;
+    background-color: #994f52 ;
+    padding:25px 50px;
+    border-radius: 5px;
+}
+.imgLine {
+    width: 300px;
+}
+
+.imgLine>img {
+    width: 100%;
+}
+
+.dataLine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 25px;
+}
