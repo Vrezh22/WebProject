@@ -4,10 +4,10 @@ import logo from '../../images/pic.png';
 import { withRouter } from 'react-router-dom';
 
 
-const Navbar = ({ navbarItems, toggleOpenAside, history }) => {
+const Navbar = ({ navbarItems, toggleOpenAside, history , width , isMenuOpen}) => {
     const isAuth = JSON.parse(localStorage.getItem('isAuth'));
     const showNavbarItems = navbarItems.map(item => {
-        if (!isAuth && (item.name === 'Posts' || item.name === 'Celebrities')) {
+        if (!isAuth && (item.name === 'Posts' || item.name === 'Celebrities' || item.name === 'Calculator')) {
             return null;
         }
         else {
@@ -24,7 +24,7 @@ const Navbar = ({ navbarItems, toggleOpenAside, history }) => {
         history.push('/login')
     }
     return (
-        <nav className="navbar">
+        <nav className={width>1244?"navbar":isMenuOpen?"navbar mobile":"navbar mobile close"}>
             <div className='logo' onClick={toggleOpenAside}>
                 <img src={logo} alt="pic" />
             </div>

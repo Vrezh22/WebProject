@@ -1,20 +1,7 @@
 import React from 'react'
-import { AnimatedSwitch } from 'react-router-transition';
-import Navbar from './components/navbar'
-import Aside from './components/aside'
-import { Route, Redirect } from 'react-router-dom';
-import PrivateRoute from './security/privateRoute';
-
-import About from './pages/about';
-import ContactUs from './pages/contactus';
-import Login from './pages/login';
-import Posts from './pages/posts';
-import Registration from './pages/registration';
-import Celebrities from './pages/celebrities';
-import Profile from './pages/profile';
-import Friends from './pages/friends';
-import Friend from './pages/friend';
-import Calc from './pages/calc';
+import withScreenSizes from './HOC/withScreenSizes';
+import Web from './version/Web';
+import Mobile from './version/Mobile';
 
 
 
@@ -107,6 +94,12 @@ const data = {
   celebrities: [
     {
       "id": 1,
+      "img": 'https://scontent.fevn5-1.fna.fbcdn.net/v/t1.0-9/82277499_2988340987920678_118515924566278144_o.jpg?_nc_cat=103&ccb=2&_nc_sid=09cbfe&_nc_ohc=RbMD5awPlLAAX9OXUO-&_nc_ht=scontent.fevn5-1.fna&oh=726387b0aa27f231d4509914e0593f60&oe=6027F5C8',
+      "fullname": "Աշոտ Հեբոյան (ՎԱՐՊԵՏ)",
+      "body": "Վաստակավոր WEB Սենսեյ սև գոտի 10-րդ դան"
+    },
+    {
+      "id": 1,
       "img": 'https://www.1tv.am/images/video/2/6631/hogevor_player.jpeg',
       "fullname": "Մհեր Մկրտչյան",
       "body": "Վաստակավոր դերասան"
@@ -143,60 +136,47 @@ class App extends React.Component {
 
   state = {
     isOpen: false,
-    isOpenAboutImg: false
+    isOpenAboutImg: false,
+    isMenuOpen:true
   }
 
   render() {
-    return (
-      <div className="App">
-        <Navbar navbarItems={data.navbarItems} toggleOpenAside={this.toggleOpenAside} />
-        <Aside isOpen={this.state.isOpen} />
-        <div className="app_content">
-          <AnimatedSwitch
-            atEnter={{ opacity: 0 }}
-            atLeave={{ opacity: 0 }}
-            atActive={{ opacity: 1 }}
-            className="app_content"
-          >
-            <Route path='/about' render={() => <About isOpenAboutImg={this.state.isOpenAboutImg} toggleOpenAboutImgPage={this.toggleOpenAboutImgPage} />} />
-            <Route path='/contactus' component={ContactUs} />
-            <Route path='/login' component={Login} />
-            <Route path='/registration' component={Registration} />
-            <PrivateRoute
-              path='/celebrities'
-              render={(props) => <Celebrities{...props} celebrities={data.celebrities} />} />
-            <PrivateRoute
-              path="/posts"
-              render={(props) => <Posts {...props} posts={data.posts} />}
-            />
-            <PrivateRoute path="/profile">
-              <Profile />
-            </PrivateRoute>
-            <PrivateRoute path="/friends">
-              <Friends />
-            </PrivateRoute>
-            <PrivateRoute path="/friend/:id">
-              <Friend />
-            </PrivateRoute>
-            <PrivateRoute path="/calc" >
-              <Calc />
-            </PrivateRoute>
-            <Redirect from='*' to='/' />
-          </AnimatedSwitch>
-        </div>
-      </div>
-    )
+   const {width} =this.props;
+   if(width<=1244) return <Mobile
+    data={data}
+    toggleOpenAside={this.toggleOpenAside}
+    state={this.state}
+    toggleOpenAboutImgPage={this.toggleOpenAboutImgPage}
+    isMenuOpen={this.state.isMenuOpen}
+    toggleOpenMenu={this.toggleOpenMenu}
+    width={width}
+    />
+    else
+    return <Web
+    data={data}
+    toggleOpenAside={this.toggleOpenAside}
+    state={this.state}
+    toggleOpenAboutImgPage={this.toggleOpenAboutImgPage}
+    width={width}
+    />
   }
   toggleOpenAside = () => {
     this.setState({ isOpen: !this.state.isOpen })
   }
   toggleOpenAboutImgPage = () => {
-    this.setState((state) => ({
-      ...state,
-      isOpenAboutImg: !state.isOpenAboutImg
+    this.setState((prevState) => ({
+      ...prevState,
+      isOpenAboutImg: !prevState.isOpenAboutImg
     }))
   }
+  toogleOpenMenu = () => {
+    this.setState(prevState => ({
+      ...prevState,
+      isMenuOpen: !this.state.isMenuOpen
+    }))
+  }
+
+
 }
 
-
-export default App;
+export default withScreenSizes(App);

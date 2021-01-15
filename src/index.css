@@ -18,6 +18,27 @@ img{
     margin-left: 20px;
     cursor: pointer;
 }
+.navbar.mobile {
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 300px;
+    z-index: 1;
+    background-color: #ee6e73;
+    transition: .4s;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .navbar.mobile>.nav_list {
+    flex-direction: column;
+  }
+  
+  .navbar.mobile.close {
+    left: -100%;
+    transition: .4s;
+  }
+
 .aside{
     position: fixed;
     left: 0;
@@ -83,3 +104,24 @@ img{
     left:44%;
     width:200px;
   }
+
+  .burgerMenu>img {
+    width: 70px;
+  }
+  
+  .burgerMenu.open {
+    position: fixed;
+   left: 26%;
+    top: 2%;
+    transition: .4s;
+    z-index: 2;
+  }
+  
+  .burgerMenu.close {
+    position: fixed;
+    left: 2%;
+    top: 2%;
+    transition: .4s;
+    z-index: 2;
+  }
+

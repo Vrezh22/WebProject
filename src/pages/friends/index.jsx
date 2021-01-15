@@ -1,19 +1,20 @@
 import React from 'react';
 import s from './friends.module.css';
 import Preloader from '../../components/preloader';
+import *as axios from'axios';
 import { Link } from 'react-router-dom';
+import withScreenSizes from '../../HOC/withScreenSizes'
 
 class Friends extends React.Component {
     state = {
         friends: []
     }
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(res => res.json())
-            .then(friends => {
+       axios.get('https://jsonplaceholder.typicode.com/users')
+            .then(({data}) => {
                 this.setState(prevState => ({
                     ...prevState,
-                    friends,
+                    friends:data
                 }))
             })
     }
@@ -45,4 +46,4 @@ class Friends extends React.Component {
         )
     }
 }
-export default Friends; 
+export default withScreenSizes(Friends); 

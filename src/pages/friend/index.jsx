@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import style from './friend.module.css';
 import Preloader from '../../components/preloader';
+import * as axios from 'axios';
 
 class Friend extends React.Component {
     state = {
@@ -11,11 +12,8 @@ class Friend extends React.Component {
         const { id } = this.props.match.params;
         (async () => {
             try {
-                const response = await fetch('https://jsonplaceholder.typicode.com/users/' + id);
-                if (response.status === 404)
-                    throw new Error('Error 404 friend ID  is not valid');
-
-                const friend = await response.json();
+                const response = await axios('https://jsonplaceholder.typicode.com/users/' + id);
+                const friend = response.data;
                 this.setState(prevState => ({
                     ...prevState,
                     friend
