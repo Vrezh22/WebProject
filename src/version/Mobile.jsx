@@ -1,17 +1,19 @@
 import Navbar from '../components/navbar';
 import Burger from '../components/burger';
-const Mobile =({
+const Mobile = ({
     data,
     toggleOpenAside,
-    isOpenMenu,
+    isMenuOpen,
     toggleOpenMenu,
     width
-})=>{
-    return(
+}) => {
+  
+    return (
         <div>
-            <Navbar navbarItems={data.navbarItems} toggleOpenAside={toggleOpenAside} isOpenMenu={isOpenMenu} width={width}/>
-            <Burger isOpenMenu={isOpenMenu} toggleOpenMenu={toggleOpenMenu}/>
-            <h1>Mobile Version</h1>
+             <h1>Mobile Version</h1>
+            <Navbar navbarItems={data.navbarItems} toggleOpenAside={toggleOpenAside} isMenuOpen={isMenuOpen} width={width} />
+            <Burger isMenuOpen={isMenuOpen} toggleOpenMenu={toggleOpenMenu} />
+           
         </div>
     )
 }

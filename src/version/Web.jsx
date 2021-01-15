@@ -6,7 +6,7 @@ import { Route, Redirect } from 'react-router-dom';
 import PrivateRoute from '../security/privateRoute';
 
 import About from '../pages/about';
-import ContactUs from '../pages/contactus';
+import ContactUs from '../pages/contactUs';
 import Login from '../pages/login';
 import Posts from '../pages/posts';
 import Registration from '../pages/registration';
@@ -19,7 +19,7 @@ import Calc from '../pages/calc';
 const Web = ({ data, state, toggleOpenAside, toggleOpenAboutImgPage, width }) => {
     return (
         <div className="App">
-            <Navbar navbarItems={data.navbarItems} toggleOpenAside={toggleOpenAside} width={width}/>
+            <Navbar navbarItems={data.navbarItems} toggleOpenAside={toggleOpenAside} width={width} />
             <Aside isOpen={state.isOpen} />
             <div className="app_content">
                 <AnimatedSwitch
@@ -34,7 +34,7 @@ const Web = ({ data, state, toggleOpenAside, toggleOpenAboutImgPage, width }) =>
                     <Route path='/registration' component={Registration} />
                     <PrivateRoute
                         path='/celebrities'
-                        render={(props) => <Celebrities{...props} celebrities={data.celebrities} />} />
+                        render={(props) => <Celebrities {...props} celebrities={data.celebrities} />} />
                     <PrivateRoute
                         path="/posts"
                         render={(props) => <Posts {...props} posts={data.posts} />}

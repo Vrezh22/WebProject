@@ -57,7 +57,7 @@ const data = {
       name: 'Calculator',
       link: '/calc',
     },
-    
+
   ],
   posts: [
     {
@@ -137,28 +137,31 @@ class App extends React.Component {
   state = {
     isOpen: false,
     isOpenAboutImg: false,
-    isMenuOpen:true
+    isMenuOpen: true
   }
 
   render() {
-   const {width} =this.props;
-   if(width<=1244) return <Mobile
-    data={data}
-    toggleOpenAside={this.toggleOpenAside}
-    state={this.state}
-    toggleOpenAboutImgPage={this.toggleOpenAboutImgPage}
-    isMenuOpen={this.state.isMenuOpen}
-    toggleOpenMenu={this.toggleOpenMenu}
-    width={width}
-    />
-    else
-    return <Web
-    data={data}
-    toggleOpenAside={this.toggleOpenAside}
-    state={this.state}
-    toggleOpenAboutImgPage={this.toggleOpenAboutImgPage}
-    width={width}
-    />
+    const { width } = this.props;
+
+    if (width <= 1024) {
+      return <Mobile
+        data={data}
+        toggleOpenAside={this.toggleOpenAside}
+        state={this.state}
+        toggleOpenAboutImgPage={this.toggleOpenAboutImgPage}
+        isMenuOpen={this.state.isMenuOpen}
+        toggleOpenMenu={this.toggleOpenMenu}
+        width={width}
+      />
+    } else {
+      return <Web
+        data={data}
+        toggleOpenAside={this.toggleOpenAside}
+        state={this.state}
+        toggleOpenAboutImgPage={this.toggleOpenAboutImgPage}
+        width={width}
+      />
+    }
   }
   toggleOpenAside = () => {
     this.setState({ isOpen: !this.state.isOpen })
@@ -169,7 +172,7 @@ class App extends React.Component {
       isOpenAboutImg: !prevState.isOpenAboutImg
     }))
   }
-  toogleOpenMenu = () => {
+  toggleOpenMenu = () => {
     this.setState(prevState => ({
       ...prevState,
       isMenuOpen: !this.state.isMenuOpen

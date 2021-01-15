@@ -1,26 +1,33 @@
-img{
+img {
     width: 100%;
     height: 100%;
 }
-.logo{
+body {
+    overflow: hidden;
+}
+.logo {
     width: 70px;
     height: auto;
-    margin-right:5px;
+    margin-right: 5px;
     margin-left: 50px;
     cursor: pointer;
 }
-.navbar{
+
+.navbar {
     display: flex;
 }
-.nav_item{
+
+.nav_item {
     color: yellow;
     font-size: 20px;
     margin-left: 20px;
     cursor: pointer;
 }
+
 .navbar.mobile {
+    position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     height: 100vh;
     width: 300px;
     z-index: 1;
@@ -29,34 +36,38 @@ img{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  .navbar.mobile>.nav_list {
-    flex-direction: column;
-  }
-  
-  .navbar.mobile.close {
-    left: -100%;
-    transition: .4s;
-  }
+}
 
-.aside{
+.navbar.mobile>.nav_list {
+    flex-direction: column;
+}
+
+.navbar.mobile.close {
+    right: -300px;
+}
+
+.aside {
     position: fixed;
     left: 0;
     height: 100vh;
     width: 120px;
-    background-color:#ee6e73;
+    background-color: #ee6e73;
     transition: 1s;
 }
-.aside.hidden{
+
+.aside.hidden {
     transform: translate(-100%);
 }
 
 /* navbar */
-.navactiveItem{
+
+.navactiveItem {
     color: blue;
 }
+
 /* celebs */
-.celeb_contenet{
+
+.celeb_contenet {
     width: 100%;
     height: auto;
     display: flex;
@@ -64,64 +75,69 @@ img{
     justify-content: center;
     align-items: center;
 }
-.nkari_chxol{
+
+.nkari_chxol {
     width: 300px;
     height: auto;
 }
-.celeb_par{
+
+.celeb_par {
     font-size: 35px;
 }
-.celebrity_line{
+
+.celebrity_line {
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color:#994f52 ;
+    background-color: #994f52;
 }
-.hop{
+
+.hop {
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color:#994f52 ;
+    background-color: #994f52;
 }
-.full{
+
+.full {
     width: 350px;
     height: auto;
 }
+
 /* about */
-.aboutUs{
+
+.aboutUs {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-image: url('https://thumbs.gfycat.com/NastyWickedBluebottle-size_restricted.gif');
 }
+
 .preloader {
     position: fixed;
-    top:20%;
-    left:44%;
-    width:200px;
-  }
+    top: 20%;
+    left: 44%;
+    width: 200px;
+}
 
-  .burgerMenu>img {
+.burgerMenu>img {
     width: 70px;
-  }
-  
-  .burgerMenu.open {
-    position: fixed;
-   left: 26%;
-    top: 2%;
-    transition: .4s;
-    z-index: 2;
-  }
-  
-  .burgerMenu.close {
-    position: fixed;
-    left: 2%;
-    top: 2%;
-    transition: .4s;
-    z-index: 2;
-  }
+}
 
+.burgerMenu {
+    position: fixed;
+    transition: .4s;
+    z-index: 2;
+    top: 2%;
+    right: 56%;
+}
+
+
+
+.burgerMenu.close {
+    right: 2%;
+}
