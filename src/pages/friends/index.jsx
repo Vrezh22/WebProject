@@ -20,6 +20,9 @@ class Friends extends React.Component {
     }
 
     render() {
+        if(true) {
+            throw new Error('Error from Friends Page!')
+        }
         if (!this.state.friends.length) return <Preloader />
 
         const FriendsJSX = this.state.friends.map(friend => {

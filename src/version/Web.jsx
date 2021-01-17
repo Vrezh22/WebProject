@@ -4,9 +4,11 @@ import Navbar from '../components/navbar'
 import Aside from '../components/aside'
 import { Route, Redirect } from 'react-router-dom';
 import PrivateRoute from '../security/privateRoute';
+import withSuspense from '../HOC/withSuspense';
+import ErrorBoundary from '../ErrorBoundary';
 
 import About from '../pages/about';
-import ContactUs from '../pages/contactUs';
+import ContactUs from '../pages/contactus';
 import Login from '../pages/login';
 import Posts from '../pages/posts';
 import Registration from '../pages/registration';
@@ -14,7 +16,7 @@ import Celebrities from '../pages/celebrities';
 import Profile from '../pages/profile';
 import Friends from '../pages/friends';
 import Friend from '../pages/friend';
-import Calc from '../pages/calc';
+const Calc = React.lazy(() => import('../pages/calc'));
 
 const Web = ({ data, state, toggleOpenAside, toggleOpenAboutImgPage, width }) => {
     return (
@@ -42,14 +44,16 @@ const Web = ({ data, state, toggleOpenAside, toggleOpenAboutImgPage, width }) =>
                     <PrivateRoute path="/profile">
                         <Profile />
                     </PrivateRoute>
-                    <PrivateRoute path="/friends">
-                        <Friends />
+                    <PrivateRoute path="/calc" >
+                        {withSuspense(Calc)}
                     </PrivateRoute>
-                    <PrivateRoute path="/friend/:id">
+                    <PrivateRoute path="/friend/:id" >
                         <Friend />
                     </PrivateRoute>
-                    <PrivateRoute path="/calc" >
-                        <Calc />
+                    <PrivateRoute path="/friends" >
+                        <ErrorBoundary>
+                            <Friends />
+                        </ErrorBoundary>
                     </PrivateRoute>
                     <Redirect from='*' to='/' />
                 </AnimatedSwitch>

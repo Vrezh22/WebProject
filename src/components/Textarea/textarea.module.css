@@ -1,0 +1,14 @@
+.textarea {
+    resize: none;
+    border:0;
+    border-bottom:1px solid black;
+    border-radius: 5px;
+    height: 70px;
+    outline: none;
+}
+.label {
+    margin-bottom: 5px;
+    font-size:17px;
+    color:rgb(107, 98, 98);
+    letter-spacing: 1px;
+}
