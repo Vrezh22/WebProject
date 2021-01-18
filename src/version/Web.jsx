@@ -8,7 +8,7 @@ import withSuspense from '../HOC/withSuspense';
 import ErrorBoundary from '../ErrorBoundary';
 
 import About from '../pages/about';
-import ContactUs from '../pages/contactus';
+import ContactUs from '../pages/contactUs';
 import Login from '../pages/login';
 import Posts from '../pages/posts';
 import Registration from '../pages/registration';
