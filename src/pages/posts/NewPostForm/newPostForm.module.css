@@ -1,0 +1,17 @@
+.form {
+    max-width:600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    border:1px solid  #994f52;
+    border-radius: 3px;
+    margin:25px auto;
+    
+}
+.header4 {
+    text-align: center;
+    color: #994f52;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}

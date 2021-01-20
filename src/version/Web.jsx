@@ -6,9 +6,10 @@ import { Route, Redirect } from 'react-router-dom';
 import PrivateRoute from '../security/privateRoute';
 import withSuspense from '../HOC/withSuspense';
 import ErrorBoundary from '../ErrorBoundary';
+import PostsContextProvider from '../context/provider/PostsContextProvider';
 
 import About from '../pages/about';
-import ContactUs from '../pages/contactUs';
+import ContactUs from '../pages/contactus';
 import Login from '../pages/login';
 import Posts from '../pages/posts';
 import Registration from '../pages/registration';
@@ -37,10 +38,12 @@ const Web = ({ data, state, toggleOpenAside, toggleOpenAboutImgPage, width }) =>
                     <PrivateRoute
                         path='/celebrities'
                         render={(props) => <Celebrities {...props} celebrities={data.celebrities} />} />
-                    <PrivateRoute
-                        path="/posts"
-                        render={(props) => <Posts {...props} posts={data.posts} />}
-                    />
+                    <PostsContextProvider>
+                        <PrivateRoute
+                            path="/posts"
+                        />
+                        <Posts />
+                    </PostsContextProvider>
                     <PrivateRoute path="/profile">
                         <Profile />
                     </PrivateRoute>
