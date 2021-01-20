@@ -18,7 +18,7 @@ const Posts = (props) => {
                   </div>
                   <div className="card-content">
                     <p>{post.body}</p>
-                    <button className="btn btn-danger" onClick={() => this.handleDelete()}>DELETE</button>
+                    <button className="btn btn-danger" onClick={() => context.handleDelete(post.id)}>DELETE</button>
                   </div>
                 </div>
               </div>

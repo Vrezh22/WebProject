@@ -51,11 +51,14 @@ class PostsContextProvider extends React.Component {
       posts: posts
     }))
   }
-  handleDelete = (id) => {
+  handleDelete = () => {
+    const id = this.state.posts.id
     this.setState((prevState) => ({
       posts: prevState.posts.filter(posts => posts.id !== id),
     }))
+    console.log(id);
   };
+
   render() {
     return (
       <PostsContext.Provider
