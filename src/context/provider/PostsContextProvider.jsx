@@ -35,8 +35,29 @@ class PostsContextProvider extends React.Component {
         "title": "nesciunt quas odio",
         "body": "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque"
       },
-    ]
+    ],
+    editPost: {
+      isOpen: false,
+      postId: ''
+    }
   }
+  openEditPost = (postId) => {
+    this.setState({
+      editPost: {
+        isOpen: true,
+        postId
+      }
+    })
+  }
+  closeEditPost = () => {
+    this.setState({
+      editPost: {
+        isOpen: false,
+        postId: ''
+      }
+    })
+  }
+
   addPost = (img, title, body) => {
     const posts = [...this.state.posts];
     const newPost = {
@@ -46,17 +67,16 @@ class PostsContextProvider extends React.Component {
       body
     }
     posts.push(newPost);
-    this.setState(prevState => ({
+    return this.setState(prevState => ({
       ...prevState,
       posts: posts
     }))
   }
-  handleDelete = () => {
-    const id = this.state.posts.id
-    this.setState((prevState) => ({
+  handleDelete = (id) => {
+    return this.setState((prevState) => ({
       posts: prevState.posts.filter(posts => posts.id !== id),
     }))
-    console.log(id);
+
   };
 
   render() {
@@ -64,8 +84,11 @@ class PostsContextProvider extends React.Component {
       <PostsContext.Provider
         value={{
           posts: this.state.posts,
+          editPost:this.state.editPost,
           addPost: this.addPost,
-          handleDelete: this.handleDelete
+          handleDelete: this.handleDelete,
+          closeEditPost: this.closeEditPost,
+          openEditPost: this.openEditPost
         }}
       >
         {this.props.children}

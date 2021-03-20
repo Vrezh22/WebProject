@@ -6,7 +6,7 @@ import Button from '../../components/button';
 const ContactUs = (props) => {
     return (
         <div className='container-fluid' style={{
-            backgroundImage: "url(" + "https://pbs.twimg.com/media/EojUMb8XYAAHwuh.jpg" + ")",
+            backgroundImage: "url(  https://pbs.twimg.com/media/EojUMb8XYAAHwuh.jpg )",
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',

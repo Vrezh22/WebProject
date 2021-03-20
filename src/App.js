@@ -63,12 +63,6 @@ const data = {
   celebrities: [
     {
       "id": 1,
-      "img": 'https://scontent.fevn5-1.fna.fbcdn.net/v/t1.0-9/82277499_2988340987920678_118515924566278144_o.jpg?_nc_cat=103&ccb=2&_nc_sid=09cbfe&_nc_ohc=RbMD5awPlLAAX9OXUO-&_nc_ht=scontent.fevn5-1.fna&oh=726387b0aa27f231d4509914e0593f60&oe=6027F5C8',
-      "fullname": "Աշոտ Հեբոյան (ՎԱՐՊԵՏ)",
-      "body": "Վաստակավոր WEB Սենսեյ սև գոտի 10-րդ դան"
-    },
-    {
-      "id": 1,
       "img": 'https://www.1tv.am/images/video/2/6631/hogevor_player.jpeg',
       "fullname": "Մհեր Մկրտչյան",
       "body": "Վաստակավոր դերասան"
@@ -93,7 +87,7 @@ const data = {
     },
     {
       "id": 5,
-      "img": 'https://scontent.fevn5-1.fna.fbcdn.net/v/t1.0-9/117951620_2738873193026405_2846872406071791721_n.jpg?_nc_cat=104&ccb=2&_nc_sid=8bfeb9&_nc_ohc=jlkrnByQTO4AX9rxbeF&_nc_oc=AQk6ss8RCg7TnGZdTIWWgw1_p-bu6X4633h0DKnIfXxkqwb19hP0Lma_H8kUTLIELLM&_nc_ht=scontent.fevn5-1.fna&oh=55563a6478bc8e30b134efa50e537155&oe=600B65D6',
+      "img": 'https://scontent.fevn5-1.fna.fbcdn.net/v/t1.0-9/131217720_2848086775438379_3645061596391205007_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=TZMn9x9ALEMAX9XfKqK&_nc_ht=scontent.fevn5-1.fna&oh=e959806651e485543ff173b1de4012dd&oe=607A8E21',
       "fullname": "Վրեժ Հովհաննիսյան",
       "body": "Web Developer"
     },
@@ -147,8 +141,6 @@ class App extends React.Component {
       isMenuOpen: !this.state.isMenuOpen
     }))
   }
-
-
 }
 
 export default withScreenSizes(App);

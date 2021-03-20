@@ -7,6 +7,7 @@ import PrivateRoute from '../security/privateRoute';
 import withSuspense from '../HOC/withSuspense';
 import ErrorBoundary from '../ErrorBoundary';
 import PostsContextProvider from '../context/provider/PostsContextProvider';
+// import EditPageModal from '../pages/posts/EditPageModal';
 
 import About from '../pages/about';
 import ContactUs from '../pages/contactus';
@@ -24,6 +25,7 @@ const Web = ({ data, state, toggleOpenAside, toggleOpenAboutImgPage, width }) =>
         <div className="App">
             <Navbar navbarItems={data.navbarItems} toggleOpenAside={toggleOpenAside} width={width} />
             <Aside isOpen={state.isOpen} />
+         
             <div className="app_content">
                 <AnimatedSwitch
                     atEnter={{ opacity: 0 }}
